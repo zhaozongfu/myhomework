@@ -309,7 +309,7 @@
         if (confirm("确定删除吗?")) {
           $.ajax({
             type: "DELETE",
-            url: "http://81.68.107.245/api/songs/" + id,
+            url: "https://mp3.zzgoodqc.cn/ 从   从 从 重新api/songs/" + id,
             dataType: "json",
             success: function (res) {
               if (res.code == "200") {
@@ -330,7 +330,7 @@
         $("#ddv").css("display", "none");
         $("#formStyle").css("display", "none");
         $("#ss").css("display", "block");
-      }
+      }vc
 
       $("#butt").on("click", function () {
         event.preventDefault();
@@ -342,7 +342,7 @@
 
         $.ajax({
           type: "POST",
-          url: "http://81.68.107.245/api/songs",
+          url: "https://mp3.zzgoodqc.cn/api/songs",
           dataType: "json",
           headers: { "Content-Type": "application/json" },
           data: JSON.stringify({
@@ -375,7 +375,7 @@
             console.log( $("form input").eq(0));
           $.ajax({
             type: "get",
-            url: "http://81.68.107.245/api/songs/" + id,
+            url: "https://mp3.zzgoodqc.cn/api/songs/" + id,
             dataType: "json",
             success: function (data) {
           
@@ -418,7 +418,7 @@
       function getList() {
         $.ajax({
           type: "GET",
-          url: "http://81.68.107.245/api/songs",
+          url: "https://mp3.zzgoodqc.cn/api/songs",
           dataType: "json",
           data: {
             page: 1,
