@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="initial-scale=1.0, user-scalable=no, width=device-width"
+    />
+    <script src="https://webapi.amap.com/maps?v=2.0&key=38eb2e2c4f713a3c0d4685a9f3c5bb6c"></script>
+    <title>HELLO，AMAP!</title>
+    <style>
+      html,
+      body
+      {
+        width: 100%;
+        height: 100%;
+      }
+      #container {
+        margin: auto;
+        width: 1000px;
+        height: 600px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <button onclick="show()">显示路况</button>
+    <button onclick="hide()">隐藏显示</button>
+    <script type="text/javascript">
+      let toolbar;
+      window._AMapSecurityConfig = {
+        securityJsCode: "824c2434d512ade263e1a4134bf729ec",
+      };
+    </script>
+    <script src="https://webapi.amap.com/loader.js"></script>
+    <script type="text/javascript">
+      AMapLoader.load({
+        key: "38eb2e2c4f713a3c0d4685a9f3c5bb6c", // 申请好的Web端开发者Key，首次调用 load 时必填
+        version: "2.0", // 指定要加载的 JSAPI 的版本，缺省时默认为 1.4.15
+      }).then((AMap) => {
+        // JS API加载完成后获取AMap对象
+      });
+      const map = new AMap.Map("container", {
+        viewMode: "2D", // 默认使用 2D 模式
+        zoom: 16, //初始化地图层级
+        center: [113.427839, 34.765488], //初始化地图中心点
+      });
+      /*  map = new AMap.Map("container", {
+        mapStyle: "amap://styles/whitesmoke", //设置地图的显示样式
+      }); */
+      const traffic = new AMap.TileLayer.Traffic({
+        autoRefresh: true, //是否自动刷新，默认为false
+        interval: 180, //刷新间隔，默认180s
+      });
+
+      map.add(traffic); //通过add方法添加图层
+      function show() {
+        traffic.show(); //显示路况图层
+      }
+      function hide() {
+        traffic.hide(); //隐藏路况图层
+      }
+      AMap.plugin("AMap.ToolBar", function () {
+        // 异步加载插件
+        toolbar = new AMap.ToolBar(); // 缩放工具条实例化
+        map.addControl(toolbar);
+       
+      });
+     
+        AMap.plugin("AMap.ToolBar", function () {
+        // 异步加载插件
+        Scale = new AMap.Scale(); // 缩放工具条实例化
+        map.addControl(Scale);
+       
+      });
+    </script>
+  </body>
+</html>
