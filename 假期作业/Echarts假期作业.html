@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <script src="./jquery.min.js"></script>
+    <script src="./echarts.min.js"></script>
+    <link rel="stylesheet" href="./layui.css" />
+    <script src="./layui.js"></script>
+    <style>
+      .layui-input {
+        position: relative;
+        left: 30px;
+        top: 2px;
+        width: 300px;
+        display: inline-block;
+      }
+      b {
+        position: relative;
+        left: 30px;
+        top: 2px;
+        font-size: 20px;
+      }
+      table {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 18px;
+      }
+      td {
+        width: 200px;
+        height: 50px;
+      }
+      td:last-child {
+        width: 450px;
+      }
+      th {
+        width: 200px;
+        height: 50px;
+      }
+      #main {
+        margin: 30px auto;
+        width: 600px;
+        height: 400px;
+       background-color: aquamarine;
+        display: none;
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+      }
+      #box1{
+        width: 300px;
+        height: 150px;
+        text-align: center;
+        line-height: 50px;
+       background-color: aliceblue;
+        padding: 20px;
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+      }
+      #box2{
+        width: 300px;
+        height: 500px;
+        padding-top: 30px;
+        text-align: center;
+        line-height: 20px;
+        font-size: 15px;
+        background-color: aquamarine;
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div id="box1" style="display: none;">
+    <form action="#">
+      <label>学生名字</label><br>
+      <input
+        type="text"
+        name="username"
+        placeholder="请输入名字"
+        style="width: 100px"
+        id="ss"
+      /> <br>
+      <button type="submit" id="txs">立即提交</button>
+    </div>
+    <div id="box2" style="display: none;">
+    </div>
+    </form>
+    <button class="layui-btn" id="btn">添加学生</button>
+    <b>搜索:</b>
+    <input type="text" placeholder="请输入学生名字" class="layui-input" name="sou" id="input"/>
+    <button
+      class="layui-btn"
+      style="position: relative; left: 30px"
+      onclick="sou()"
+    >
+      搜索
+    </button>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <td rowspan="2"><input type="checkbox" id="input1" name="shou" id="first-input"/></td>
+          <td rowspan="2">姓名</td>
+          <td>3.31(星期五)</td>
+          <td colspan="3">4.7(星期五)</td>
+          <td>4.14(星期五)</td>
+          <td colspan="3">4.21(星期五)</td>
+          <td rowspan="2">教学周期平均分</td>
+          <td rowspan="3">操作</td>
+        </tr>
+        <tr>
+          <th>机试成绩</th>
+          <th>笔试成绩</th>
+          <th>机试成绩</th>
+          <th>平均分</th>
+          <th>机试成绩</th>
+          <th>笔试成绩</th>
+          <th>机试成绩</th>
+          <th>平均分</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <button class="layui-btn" id="ssbtn">批量删除</button>
+    <div id="main"></div>
+    <script>
+      let arr = [
+  { 
+        id:1,
+        name: "赵帅博",
+        result: [
+          {
+            data: "2023-3-31",
+            subject: [
+              {
+                name: "机试",
+                score: 70,
+              },
+              {
+                name: "笔试",
+                score: 0,
+              },
+            ],
+          },
+          {
+            data: "2023-4-7",
+            subject: [
+              {
+                name: "机试",
+                score: 70,
+              },
+              {
+                name: "笔试",
+                score: 58,
+              },
+            ],
+          },
+          {
+            data: "2023-4-14",
+            subject: [
+              {
+                name: "机试",
+                score: 65,
+              },
+              {
+                name: "笔试",
+                score: 0,
+              },
+            ],
+          },
+          {
+            data: "2023-4-21",
+            subject: [
+              {
+                name: "机试",
+                score: 80,
+              },
+              {
+                name: "笔试",
+                score: 51,
+              },
+            ],
+          },
+        ],
+      },
+  {
+          id:2,
+        name: "张三",
+        result: [
+          {
+            data: "2023-3-31",
+            subject: [
+              {
+                name: "机试",
+                score: 70,
+              },
+              {
+                name: "笔试",
+                score: 0,
+              },
+            ],
+          },
+          {
+            data: "2023-4-4",
+            subject: [
+              {
+                name: "机试",
+                score: 70,
+              },
+              {
+                name: "笔试",
+                score: 58,
+              },
+            ],
+          },
+          {
+            data: "2023-4-11",
+            subject: [
+              {
+                name: "机试",
+                score: 65,
+              },
+              {
+                name: "笔试",
+                score: 0,
+              },
+            ],
+          },
+          {
+            data: "2023-4-21",
+            subject: [
+              {
+                name: "机试",
+                score: 80,
+              },
+              {
+                name: "笔试",
+                score: 51,
+              },
+            ],
+          },
+        ],
+      },
+];
+      const obj = [
+        {
+          name: "陈静",
+          subject: [60, 85, 35, 60, 65, 65, 75, 70, 64.375],
+        },
+        {
+          name: "李泽",
+          subject: [99, 38, 100, 69, 70, 50, 92, 71, 73.625],
+        },
+        {
+          name: "赵灿龙",
+          subject: [90, 51, 70, 60.5, 65, 29, 50, 50, 39.5],
+        },
+        {
+          name: "刘佳佳",
+          subject: [75, 45, 70, 57.5, 70, 60, 50, 55, 60.3125],
+        },
+        {
+          name: "宋好影",
+          subject: [75, 62, 70, 66, 70, 58, 65, 61.5, 65.9375],
+        },
+        {
+          name: "齐博超",
+          subject: [95, 65, 75, 70, 75, 36, 95, 65.5, 72.0625],
+        },
+        {
+          name: "郭栋彬",
+          subject: [85, 67, 99, 83, 70, 49, 90, 69.5, 76.5625],
+        },
+        {
+          name: "董阳光",
+          subject: [80, 61, 70, 65.5, 73, 41.5, 90, 65.75, 68.34375],
+        },
+        {
+          name: "李彦洋",
+          subject: [85, 66, 65, 65.5, 65, 60, 75, 67.5, 68.625],
+        },
+        {
+          name: "张亚哲",
+          subject: [95, 61, 75, 68, 70, 52, 80, 66, 70.875],
+        },
+        {
+          name: "刘振洲",
+          subject: [85, 71, 66, 68.5, 60, 45, 70, 57.5, 65.375],
+        },
+        {
+          name: "董帅磊",
+          subject: [70, 67, 60, 63.5, 68, 46, 85, 65.5, 65.625],
+        },
+        {
+          name: "赵帅博",
+          subject: [70, 58, 70, 64, 65, 51, 80, 65.5, 65.4375],
+        },
+        {
+          name: "杨浩冰",
+          subject: [50, 66, 75, 70.5, 60, 65, 50, 57.5, 61.75],
+        },
+        {
+          name: "晋帅豪",
+          subject: [85, 72, 75, 73.5, 65, 78, 80, 79, 75.9375],
+        },
+        {
+          name: "郑哲员",
+          subject: [75, 85, 25, 55, 65, 34.5, 70, 52.25, 57.71875],
+        },
+        {
+          name: "李泉澳",
+          subject: [100, 66, 100, 83, 80, 57, 95, 76, 82.125],
+        },
+        {
+          name: "赵宗福",
+          subject: [70, 60, 70, 65, 62, 46, 70, 58, 62.625],
+        },
+      ];
+      //添加
+      btnFun();
+      function btnFun() {
+        $("#btn").click(function () {
+          $("#box1").toggle();
+          $('#ss').val("")
+          txFun()
+        });
+      }
+      function txFun(){
+ $('#txs').on('click',function(e){
+  console.log(111);
+        e.preventDefault();
+       let a= $('#ss').val();
+       console.log(a);
+       obj.push(a)
+       $("#box1").toggle();
+       fun()
+      })}
+         //搜索
+       function ysFun() {
+        [$("tbody td")].forEach((item) => {
+          console.log([$("tbody td")]);
+          console.log(item);
+          if (item.innerHTML < 50) {
+            $(item).css("color", "red");
+          } else if (item.innerHTML > 90) {
+            $(item).css("color", "purple");
+          }
+        });
+      }
+      function fun() {
+        let html = "";
+        obj.forEach((item, index) => {
+          html += `
+          <tr>
+          <td><input type="checkbox" name="${index}" data-index="${index}"/></td>
+          <td>${item.name}</td>
+          <td>${item.subject[0]}</td>
+          <td>${item.subject[1]}</td>
+          <td>${item.subject[2]}</td>
+          <td>${item.subject[3]}</td>
+          <td>${item.subject[4]}</td>
+          <td>${item.subject[5]}</td>
+          <td>${item.subject[6]}</td>
+          <td>${item.subject[7]}</td>
+          <td>${item.subject[8]}</td>
+           <td>
+            <button class="layui-btn" data-index="${index}" onclick="chu(this)">删除</button>
+            <button class="layui-btn" data-index="${index}">编辑</button>
+            <button class="layui-btn" data-index="${index}">查看成绩图标</button>
+          </td>
+          </tr>
+                `;
+        });
+        $("tbody").html(html);
+        
+
+      }
+      fun(obj);
+      ysFun(obj);
+      //删除
+      function chu(e) {
+        if (confirm("确定删除吗?")) {
+          $(e).parent("td").parent("tr").remove();
+          localStorage.setItem('arr', JSON.stringify(obj))
+        }
+      }
+      //修改
+      $("tbody").on("click", "button", function (e) {
+        let index = e.target.dataset.index;
+        if (e.target.innerHTML == "编辑") {
+               $("#box2").toggle();
+               $('#box2').html(`
+      <label=>学生名字</label=>
+      <input
+        type="text"
+        name="user"
+        placeholder="请输入名字"
+        style="width: 100px"
+        id="sd"
+      /><br /><br />
+
+       <label= class="Text">3.31机试</label=>
+      <input
+        type="text"
+        name="us"
+        placeholder="请输入名字"
+        style="width: 100px"
+      /><br /><br />
+       <label=  class="Text">4.7笔试</label=>
+      <input
+        type="text"
+        name="us"
+        placeholder="请输入名字"
+        style="width: 100px"
+      /><br /><br />
+        <label=  class="Text">4.7机试</label=>
+      <input
+        type="text"
+        name="us"
+        placeholder="请输入名字"
+        style="width: 100px"
+      /><br /><br />
+      <label=  class="Text">4.7平均分</label=>
+      <input
+        type="text"
+        name="us"
+        placeholder="请输入名字"
+        style="width: 100px"
+      /><br /><br />
+      <label=  class="Text">4.14机试</label=>
+      <input
+        type="text"
+        name="us"
+        placeholder="请输入名字"
+        style="width: 100px"
+      /><br /><br />
+        <label=  class="Text">4.21机试</label=>
+      <input
+        type="text"
+        name="us"
+        placeholder="请输入名字"
+        style="width: 100px"
+      /><br /><br />
+        <label=  class="Text">4.21笔试</label=>
+      <input
+        type="text"
+        name="us"
+        placeholder="请输入名字"
+        style="width: 100px"
+      /><br /><br />
+      <label=  class="Text">4.21平均分</label=>
+      <input
+        type="text"
+        name="us"
+        placeholder="请输入名字"
+        style="width: 100px"
+      /><br /><br />
+      <label=  class="Text">教学平均分</label=>
+      <input
+        type="text"
+        name="us"
+        placeholder="请输入名字"
+        style="width: 100px"
+      /><br /><br />
+        <button type="submit" id="modify" class="layui-btn">修改</button>
+               `)
+         $("#sd").val(obj[index].name)
+         let res;
+      var inputs = $('input[name="us"]') // 获取所有 input 对象
+       for (var i = 0; i < obj[index].subject.length && i < inputs.length; i++) {
+    $(inputs[i]).val(obj[index].subject[i]); // 将 arr 中的值依次赋值给 input
+          }
+       //提交修改
+       $("#modify").click(function(e){
+       for (var i = 0; i < obj[index].subject.length && i < inputs.length; i++) {
+             obj[index].subject[i]=+inputs[i].value 
+             
+       }
+       localStorage.setItem('obj', JSON.stringify(obj))
+       fun(obj)
+       $("#box2").toggle();
+       })
+        }
+      });
+      //搜索
+      function sou() {
+        var sou = $("#input").val();
+        let newarr = obj.filter((item, index) => {
+          return item.name.includes(sou);
+        });
+        rom(newarr);
+      }
+
+      function rom(newarr) {
+        $("tbody tr:gt(0)").remove();
+        fun(newarr);
+      }
+      //查看
+      $("tbody").on("click", "button", function (e) {
+        let index = e.target.dataset.index;
+        if (e.target.innerHTML == "查看成绩图标") {
+              $("#main").toggle()
+              icon(index)
+        }
+      });
+      function icon(n){
+        var myChart,
+      options,
+      index = 0;
+
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById("main"));
+    let xData = getXdata();
+    // 指定图表的配置项和数据
+    var option = {
+      title: {
+        text: `${obj[n].name}考试成绩`,
+      },
+      tooltip: {},
+      legend: {
+        data: ["机试", "笔试"],
+      },
+      xAxis: {
+        data: xData,
+      },
+      yAxis: {},
+      series: Score(index),
+ 
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    function getXdata() {
+      let res = arr[0].result.map((item) => {
+        return item.data;
+      });
+      return res;
+    }
+    function Score(index) {
+      return [
+        {
+          label: {
+            show: true,
+            position: "top",
+          },
+          data: chengji(),
+          name: "机试",
+          type: "bar",
+        },
+        {
+          label: {
+            show: true,
+            position: "top",
+          },
+          data: hengji(),
+          name: "笔试",
+          type: "bar",
+        },
+      ];
+    }
+    function sss(){
+     
+    }
+    function chengji() {
+        let a=[obj[n].subject[0],obj[n].subject[2],obj[n].subject[4],obj[n].subject[6]]
+     
+      return a
+    }
+    function hengji() {
+  let a=[0,obj[n].subject[1],0,obj[n].subject[5]]
+  
+      return a;
+    }
+  }
+  //批量删除
+  $("#ssbtn").click(function(){
+    $('tbody input:checked').each(function(item,index){
+      var index =$(item).attr('data-index')
+      obj.splice(index,1)
+      $('#ssbtn').prop('checked',false)
+      fun()
+    })
+  })
+    </script>
+  </body>
+</html>
