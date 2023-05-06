@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="initial-scale=1.0, user-scalable=no, width=device-width"
+    />
+    <link rel="stylesheet" href="./Swiper,layui,jQ,Echarts/layui.css" />
+
+    <title>赵宗福5.6考试map</title>
+    <style type="text/css">
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      #container {
+        margin:0 30px;
+        width: 1000px;
+        height: 600px;
+      }
+      #panel {
+        position: fixed;
+        background-color: white;
+        max-height: 90%;
+        overflow-y: auto;
+        top: 10px;
+        right: 10px;
+        width: 280px;
+      }
+      #panel .amap-call {
+        background-color: #009cf9;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+      }
+      #panel .amap-lib-driving {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        overflow: hidden;
+      }
+      button{
+        position: relative;
+        top: 10px;
+        left: 500px;
+      }
+      #box6 {
+      position: relative;
+      top: -30px;
+      left: 750px;
+      width: 300px;
+      height: 50px;
+      background-color: rgba(128, 128, 128, 0.174);
+      text-align: center;
+      line-height: 50px;
+      color: aliceblue;
+      font-size: 20px;
+      border-radius: 10px;
+    }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"
+    />
+    <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+    <script type="text/javascript">
+      window._AMapSecurityConfig = {
+        securityJsCode: "ed5a4159e87e3848db8caa1fa08a652d",
+      };
+    </script>
+    <script
+      type="text/javascript"
+      src="https://webapi.amap.com/maps?v=2.0&key=b0b8c22e7382d8a5af02207e737149de&plugin=AMap.Driving"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cache.amap.com/lbs/static/addToolbar.js"
+    ></script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <div id="panel"></div>
+    <button onclick="show()" class="layui-btn">点击显示路线</button>
+    <div id="box6">-——->> <a href="./赵宗福5.6考试Echarts.html">上一题</a></div>
+    <script type="text/javascript">
+      var map = new AMap.Map("container", {
+        resizeEnable: true,
+        zoom: 16,
+        center: [113.427467, 34.765527],
+      });
+      AMap.plugin("AMap.HawkEye", function () {
+        var hawkEye = new AMap.HawkEye();
+        map.addControl(hawkEye);
+      });
+      AMap.plugin("AMap.Scale", function () {
+        var scale = new AMap.Scale();
+        map.addControl(scale);
+      });
+      AMap.plugin("AMap.MapType", function () {
+        var mapType = new AMap.MapType();
+        map.addControl(mapType);
+      });
+      function show() {
+        var driving = new AMap.Driving({
+          map: map,
+          panel: "panel",
+        });
+        driving.search(
+          [
+            { keyword: "郑州奥特制衣有限公司(东门)", city: "郑州" },
+            {
+              keyword: "河南省信阳市光山县弦山街道椿树岗社区村委会",
+              city: "信阳市",
+            },
+          ],
+          function (status, result) {
+            if (status === "complete") {
+              log.success("绘制驾车路线完成");
+            } else {
+              log.error("获取驾车数据失败：" + result);
+            }
+          }
+        );
+      }
+    </script>
+  </body>
+</html>
