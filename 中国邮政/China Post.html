@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <style type="text/css">
+      html,body,.map{
+        width: 90%;
+        background:white!important;
+        height: 90%;
+        margin: 0px;
+      }
+    </style>
+    <title>flex5.9作业</title>
+    <!-- 引入 layui.css -->
+    <link href="./layui.css" rel="stylesheet" />
+
+    <!-- 引入 layui.js -->
+    <script src="./layui.js"></script>
+    <!-- 轮播图引入 -->
+    <link rel="stylesheet" href="./swiper-bundle.min.css" />
+    <script src="./swiper-bundle.min.js"></script>
+    <style>
+      #box {
+        width: 1420px;
+        height: 1500px;
+      }
+      .parent {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 可选，使子元素在水平方向上居中对齐 */
+        /* justify-content: center; */ /* 可选，使子元素在垂直方向上居中对齐 */
+        height: 500vh; /* 可选，设置父元素高度为视口高度 */
+      }
+
+      .child {
+        width: 100%;
+        height: 50px;
+        background-color: #f3f7fc;
+        line-height: 0px;
+      }
+      .child1 {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        background-color: rgb(247, 247, 247);
+      }
+      .child2 {
+        width: 100%;
+        height: 95px;
+        background-color: white;
+      }
+      .child ul li {
+        list-style: none;
+      }
+      .child li {
+        position: relative;
+        top: 10px;
+        left: -80px;
+        float: right;
+        border-right: 1px solid rgb(206, 206, 206);
+        margin-right: 20px;
+        padding-right: 20px;
+        font-size: 14px;
+        height: 30px;
+        line-height: 30px;
+      }
+      .child1 li:hover {
+        color: rgb(99, 188, 158);
+      }
+      .child li:first-child {
+        border: none;
+      }
+      .child li select {
+        border: none;
+        background-color: #f3f7fc;
+      }
+      select:focus {
+        outline: none;
+        border: none;
+      }
+      select {
+        font-size: 14px;
+      }
+      /* 轮播图。。。。。。。。。。。。。。。。。。。。。。 */
+      .swiper {
+        width: 900px;
+        height: 370px;
+      }
+      #tu {
+        position: absolute;
+        top: 14px;
+      }
+      #shuru {
+        position: absolute;
+        left: 980px;
+        width: 250px;
+        height: 30px;
+        top: 15px;
+        right: 100px;
+      }
+      .layui-btn {
+        position: absolute;
+        top: 17px;
+        right: 102px;
+      }
+      .child1 .swiper-slide {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+      .layui-tab-title li {
+        position: relative;
+        left: 300px;
+        line-height: 40px;
+        min-width: 65px;
+        padding: 0 15px;
+        text-align: center;
+        cursor: pointer;
+      }
+      .child1 .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .child1 li {
+        list-style: none;
+      }
+      .child2 li {
+        list-style: none;
+      }
+      .child2 li {
+        position: relative;
+        left: 120px;
+        width: 180px;
+        height: 72px;
+        line-height: 72px;
+        background: #ffffff;
+        box-shadow: 0 2px 8px 0 rgba(2, 18, 40, 0.06);
+        border-radius: 4px;
+        float: left;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 10px;
+        margin-right: 25px;
+      }
+      .child3 {
+        margin-top: 20px;
+        display: flex;
+        width: 100%;
+        height: 400px;
+      }
+      .left {
+        flex: 1; /* 左侧栏占据剩余空间的比例 */
+        background-color: #e5e5e5;
+        width: 50%;
+      }
+      .left .swiper-slide img {
+        width: 100%;
+        height: 100%;
+      }
+      .right {
+        flex: 1; /* 右侧栏占据剩余空间的比例 */
+        background-color: #f5f5f5;
+        width: 50%;
+      }
+
+      .right ul li {
+        position: relative;
+        left: 30px;
+      }
+      .right li:hover {
+        color: rgb(99, 188, 158);
+      }
+      .left .swiper {
+        width: 700px;
+        height: 370px;
+      }
+      .right span {
+        float: right;
+        position: relative;
+        left: -50px;
+      }
+      #open {
+        line-height: 30px;
+        font-size: 18px;
+      }
+      #open li {
+        width: 680px;
+      }
+      #oooo{
+        position: absolute;
+        top: 20px;
+      }
+      .child4 {
+        margin-top: 20px;
+        display: flex;
+        width: 100%;
+        height: 400px;
+      }
+      .phgdgd{
+        flex: 1; /* 左侧栏占据剩余空间的比例 */
+        background-color: #e5e5e5;
+        width: 50%;
+       
+      }
+      .phgdgd .swiper-slide img {
+        width: 100%;
+        height: 100%;
+      }
+      .qusj{
+        flex: 1; /* 右侧栏占据剩余空间的比例 */
+        background-color: #f5f5f5;
+        width: 50%;
+      }
+      .qusj ul li {
+        position: relative;
+        left: 30px;
+      }
+      .qusj li:hover {
+        color: rgb(99, 188, 158);
+      }
+      .phgdgd .swiper {
+        width: 700px;
+        height: 370px;
+      }
+      .qusj span {
+        float: right;
+        position: relative;
+        left: -50px;
+      }
+      video{
+        margin-top: 20px;
+      }
+      .yyy{
+        margin-top: 20px;
+        display: flex;
+        width: 100%;
+        height: 600px;
+        background-color: aqua;
+      }
+      .ggg{
+        flex: 2; /* 左侧栏占据剩余空间的比例 */
+        background-color: #e5e5e5;
+        width: 65%;
+      }
+      .kkk{
+        flex: 1; /* 左侧栏占据剩余空间的比例 */
+        background-color: #e5e5e5;
+        width: 35%;
+       
+      }
+      #www{
+        font-size: 20px;
+      }
+      #www span{
+        margin-left: 40px;
+      }
+      #www p{
+       margin-left: 80px;
+       color: aqua;
+      }
+      .but{
+       position: relative;
+       top: 15px;
+       left: 100px;
+        width: 180px;
+        height: 50px;
+        background-color: aqua;
+        border: none;
+        border-radius: 15px;
+      }
+      #ccc{
+        position: relative;
+        top:65px;
+      }
+      .qqq{
+        width: 300px;
+        height: 150px;
+       
+      }
+      .qqq img{
+        float: left;
+      }
+      .qqq p{
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <div class="parent">
+        <div class="child">
+          <ul>
+            <li>English</li>
+            <li>
+              <select name="" id="">
+                <option value="">各地邮政</option>
+                <option value="">北京邮政</option>
+                <option value="">天津邮政</option>
+                <option value="">河北邮政</option>
+                <option value="">山西邮政</option>
+                <option value="">内蒙古邮政</option>
+                <option value="">辽宁邮政</option>
+                <option value="">吉林邮政</option>
+                <option value="">黑龙江邮政</option>
+                <option value="">上海邮政</option>
+                <option value="">江苏邮政</option>
+                <option value="">安徽邮政</option>
+                <option value="">浙江邮政</option>
+                <option value="">福建邮政</option>
+              </select>
+            </li>
+            <li>
+              <select name="" id="">
+                <option value="">集团工会及直属单位</option>
+                <option value="">中国邮政集团工会</option>
+                <option value="">邮政科学研究规划院</option>
+                <option value="">中国邮政文史中心</option>
+                <option value="">新闻宣传中心</option>
+                <option value="">邮票印制局</option>
+                <option value="">石家庄邮电职业技术学院</option>
+                <option value="">中邮电子商务有限公司</option>
+                <option value="">中国邮政广告传媒公司</option>
+                <option value="">中邮信息科技(北京)有限公司</option>
+                <option value="">中邮实业投资有限公司</option>
+              </select>
+            </li>
+
+            <li>
+              <select name="" id="">
+                <option value="">控股公司及寄递事业部</option>
+                <option value="">中国邮政储蓄银行</option>
+                <option value="">中邮人寿保险股份有限公司</option>
+                <option value="">中邮证券有限责任公司</option>
+                <option value="">中邮资本管理有限公司</option>
+                <option value="">集团公司寄递事业部</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+        <div class="child1">
+          <img
+            id="tu"
+            src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/200568120.png"
+            style="width: 120px; height: 35px"
+          />
+          
+          <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+              <li class="layui-this">首页</li>
+              <li>关于我们</li>
+              <li>新闻中心</li>
+              <li>党建时空</li>
+              <li>产品服务</li>
+              <li>社会责任</li>
+              <li>企业文化</li>
+            </ul>
+            <input id="shuru" type="text" />
+            <button type="button" class="layui-btn layui-btn-sm">小型按钮</button>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item layui-show">
+                <div class="swiper mySwiper">
+                  <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                      <img
+                        src="https://w.wallhaven.cc/full/1p/wallhaven-1pdpe3.png"
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src="https://w.wallhaven.cc/full/1p/wallhaven-1pqzj9.jpg"
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src="https://w.wallhaven.cc/full/7p/wallhaven-7p1j5y.png"
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src="https://w.wallhaven.cc/full/x6/wallhaven-x67ood.jpg"
+                      />
+                    </div>
+                    <div class="swiper-slide">
+                      <img
+                        src="https://w.wallhaven.cc/full/85/wallhaven-85kg7k.jpg"
+                      />
+                    </div>
+                  </div>
+                  <div class="swiper-pagination"></div>
+                </div>
+              </div>
+              <div class="layui-tab-item" style="text-align: center;">关于我们<img src="https://picsum.photos/600/300?random=7" alt="" /></div>
+              <div class="layui-tab-item" style="text-align: center;">新闻中心<img src="https://picsum.photos/600/300?random=8" alt="" /></div>
+              <div class="layui-tab-item" style="text-align: center;">党建时空<img src="https://picsum.photos/600/300?random=9" alt="" /></div>
+              <div class="layui-tab-item" style="text-align: center;">产品服务<img src="https://picsum.photos/600/300?random=10" alt="" /></div>
+              <div class="layui-tab-item" style="text-align: center;">社会责任<img src="https://picsum.photos/600/300?random=11" alt="" /></div>
+              <div class="layui-tab-item" style="text-align: center;">企业文化<img src="https://picsum.photos/600/300?random=12" alt="" /></div>
+            </div>
+          </div>
+        </div>
+        <div class="child2">
+          <ul>
+            <li>
+              <img src="./download1.png" />
+              <a href="https://www.11185.cn/web/#/index" target="blank"
+                >邮务业务</a
+              >
+            </li>
+            <li>
+              <img src="./download2.png" />
+              <a href="http://www.ems.com.cn/" target="blank">快递业务</a>
+            </li>
+            <li>
+              <img src="./download3.png" />
+              <a href="http://www.psbc.com/cn/index.html" target="blank"
+                >银行业务</a
+              >
+            </li>
+            <li>
+              <img src="./download4.png" />
+              <a href="https://www.chinapost-life.com" target="blank"
+                >保险业务</a
+              >
+            </li>
+            <li>
+              <img src="./download5.png" />
+              <a href="http://www.cnpsec.com.cn/main/index.html" target="blank"
+                >证券业务</a
+              >
+            </li>
+            <li>
+              <img src="./download6.png" />
+              <a href="http://www.ule.com/" target="blank">网上商城</a>
+            </li>
+          </ul>
+        </div>
+        <div class="child3">
+          <div class="left">
+            <div class="swiper mySwiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <img
+                    src="https://w.wallhaven.cc/full/kx/wallhaven-kxzl26.jpg"
+                  />
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    src="https://w.wallhaven.cc/full/1p/wallhaven-1pddjg.png"
+                  />
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    src="https://w.wallhaven.cc/full/85/wallhaven-85edxo.png"
+                  />
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    src="https://w.wallhaven.cc/full/we/wallhaven-we1jq6.jpg"
+                  />
+                </div>
+                <div class="swiper-slide">
+                  <img
+                    src="https://w.wallhaven.cc/full/1p/wallhaven-1pdjr9.jpg"
+                  />
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="layui-tab layui-tab-brief">
+              <ul class="layui-tab-title">
+                <li class="layui-this">集团要闻</li>
+                <li>综合新闻</li>
+                <li>媒体聚焦</li>
+                <li>一线风采</li>
+              </ul>
+              <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                  <ul id="open">
+                    <li>
+                      <h2>2023第19届中华全国集邮展览开幕</h2>
+                      <p>
+                        珍邮耀春城，集藏品天下。4月27日，2023第19届中华全国集邮展览在云南昆明滇池国际会展中心隆重开幕。十二届全国政协副主席、中国福利会主...
+                      </p>
+                    </li>
+                    <hr />
+                    <li>
+                      邮储银行党委举办主题教育读书班<span>2023-05-06</span>
+                    </li>
+                    <br />
+                    <li>中邮保险价值转型成效显著<span>2023-05-06</span></li>
+                    <br />
+                    <li>
+                      邮储银行一季度经营发展稳健开局
+                      “五大差异化增长极”建设成效...<span>2023-05-05</span>
+                    </li>
+                    <br />
+                    <li>
+                      中国邮政助力法院审判执行质效提高实现双赢多赢共赢<span
+                        >2023-05-05</span
+                      >
+                    </li>
+                    <br />
+                  </ul>
+                </div>
+                <div class="layui-tab-item">
+                  <img src="https://picsum.photos/600/300?random=4" alt="" />
+                </div>
+                <div class="layui-tab-item">
+                  <img src="https://picsum.photos/600/300?random=5" alt="" />
+                </div>
+                <div class="layui-tab-item">
+                  <img src="https://picsum.photos/600/300?random=6" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="child4">
+        <div class="phgdgd">
+           <h1>邮政信息</h1> 
+           <hr>
+            <video src="http://v.ctvpost.com/res/ChinaPostVideo/video/23041/2020_2.mp4" controls="controls" width="100%" height="80%"></video>
+        </div>
+        <div class="qusj">
+          <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+              <li class="layui-this">集团要闻</li>
+              <li>综合新闻</li>
+              <li>媒体聚焦</li>
+              <li>一线风采</li>
+            </ul>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item layui-show">
+                <ul id="open">
+                  <li>
+                    <h2>2023第19届中华全国集邮展览开幕</h2>
+                    <p>
+                      珍邮耀春城，集藏品天下。4月27日，2023第19届中华全国集邮展览在云南昆明滇池国际会展中心隆重开幕。十二届全国政协副主席、中国福利会主...
+                    </p>
+                  </li>
+                  <hr />
+                  <li>
+                    邮储银行党委举办主题教育读书班<span>2023-05-06</span>
+                  </li>
+                  <br />
+                  <li>中邮保险价值转型成效显著<span>2023-05-06</span></li>
+                  <br />
+                  <li>
+                    邮储银行一季度经营发展稳健开局
+                    “五大差异化增长极”建设成效...<span>2023-05-05</span>
+                  </li>
+                  <br />
+                  <li>
+                    中国邮政助力法院审判执行质效提高实现双赢多赢共赢<span
+                      >2023-05-05</span
+                    >
+                  </li>
+                  <br />
+                </ul>
+              </div>
+              <div class="layui-tab-item">
+                <img src="https://picsum.photos/600/300?random=1" alt="" />
+              </div>
+              <div class="layui-tab-item">
+                <img src="https://picsum.photos/600/300?random=2" alt="" />
+              </div>
+              <div class="layui-tab-item">
+                <img src="https://picsum.photos/600/300?random=3" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="yyy">
+        <div class="ggg">
+           <h1>邮政网点</h1>
+           <hr>
+           <p>邮政官网营业网点撤销信息</p>
+           <div id="container" class="map" tabindex="0"></div>
+        </div>
+        <div class="kkk">
+            <h1>客服热线</h1>
+            <hr>
+            <div id="www">
+            <span>邮政业务</span><p style="display: inline-block;">11185</p><br>
+            <span>邮政业务</span><p style="display: inline-block;">11185</p><br>
+            <span>邮政业务</span><p style="display: inline-block;">11185</p><br>
+            <span>邮政业务</span><p style="display: inline-block;">11185</p><br>
+            <span>邮政业务</span><p style="display: inline-block;">11185</p><br>
+            <span>邮政业务</span><p style="display: inline-block;">11185</p><br>
+            <button class="but">举报专区</button>
+            </div>
+            <div id="ccc">
+            <h1>客服热线</h1>
+            <hr>
+            <div class="qqq">
+            <img src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/1813129448.jpg" alt="" width="90px" height="90px" >
+            <p>11111</p>
+            <img src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/1813478632.jpg" alt="" width="90px" height="90px" >
+            <p>22222</p>
+            <img src="http://www.chinapost.com.cn/res/ChinaPostJT/structure/1814288693.jpg" alt="" width="90px" height="90px" >
+            <p>33333</p>
+        </div>
+             </div>
+         </div>
+    </div>
+    <div style="position: relative;top: 30px;width: 100%;">
+    <ul style="width: 100%; height: 50px;text-align: center;">
+        <li style="display: inline-block;border-right: 1px blue solid;padding-left: 30px;">友情链接：</li>
+        <li style="display: inline-block;border-right: 1px blue solid;padding-left: 30px;">中国政府网</li>
+        <li style="display: inline-block;border-right: 1px blue solid;padding-left: 30px;">财政部</li>
+        <li style="display: inline-block;border-right: 1px blue solid;padding-left: 30px;">交通运输部</li>
+        <li style="display: inline-block;border-right: 1px blue solid;padding-left: 30px;">国家邮政局</li>
+    </ul>
+    <hr>
+    <p style="text-align: center;">中国邮政集团有限公司版权所有京ICP备15035540号京公网安备110401400185联系我们</p>
+</div>  
+    </div>
+    <script language="javascript" src="https://webapi.amap.com/maps?v=2.0&key=b0b8c22e7382d8a5af02207e737149de&plugin=AMap.Scale,AMap.ToolBar"></script>
+    <script type="text/javascript" src="https://a.amap.com/jsapi_demos/static/demo-center/data/china-pp.js"></script>
+      <script type="text/javascript">
+                window._AMapSecurityConfig = {
+                    securityJsCode: 'ed5a4159e87e3848db8caa1fa08a652d',
+                }
+            </script>
+    <script type="text/javascript">
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+      var SOC = 'CHN'
+var colors = {};
+var GDPSpeed = {
+    '520000':10,//贵州
+    '540000':10,//西藏
+    '530000':8.5,//云南 
+    '500000':8.5,//重庆
+    '360000':8.5,//江西
+    '340000':8.0,//安徽
+    '510000':7.5,//四川
+    '350000':8.5,//福建
+    '430000':8.0,//湖南
+    '420000':7.5, //湖北
+    '410000':7.5,//河南
+    '330000':7.0,//浙江
+    '640000':7.5,//宁夏
+    '650000':7.0,//新疆
+    '440000':7.0,//广东
+    '370000':7.0,//山东
+    '450000':7.3,//广西
+    '630000':7.0,//青海
+    '320000':7.0,//江苏
+    '140000':6.5,//山西
+    '460000':7,// 海南
+    '310000':6.5,//上海
+    '110000':6.5, // 北京
+    '130000':6.5, // 河北
+    '230000':6, // 黑龙江
+    '220000':6,// 吉林
+    '210000':6.5, //辽宁
+    '150000':6.5,//内蒙古
+    '120000':5,// 天津
+    '620000':6,// 甘肃
+    '610000':8.5,// 甘肃
+    '710000':2.64, //台湾
+    '810000':3.0, //香港
+    '820000':4.7 //澳门
+
+}
+var getColorByDGP = function(adcode){
+    if(!colors[adcode]){
+        var gdp = GDPSpeed[adcode];
+        if(!gdp){
+            colors[adcode] = 'rgb(227,227,227)'
+        }else{   
+            var r = 3;
+            var g = 140;
+            var b = 230;
+            var a = gdp/10;
+            colors[adcode] = 'rgba('+ r +','+ g +','+b+','+a+')';
+        }
+    }
+    return colors[adcode]
+}
+
+var disCountry = new AMap.DistrictLayer.Country({
+    zIndex:10,
+    SOC:'CHN',
+    depth:1,
+    styles:{
+        'nation-stroke':'#ff0000',
+        'coastline-stroke':'#0088ff',
+        'province-stroke':'grey',
+        'fill':function(props){
+           return getColorByDGP(props.adcode_pro)
+        }
+    }
+})
+
+var map = new AMap.Map("container",{
+        zooms: [4, 8],
+        center:[106.122082,33.719192],
+        zoom: 4,
+        isHotspot:false,
+        defaultCursor:'pointer',
+        layers:[
+            disCountry
+        ],
+        viewMode:'3D',
+})
+map.addControl(new AMap.Scale());
+map.addControl(new AMap.ToolBar({liteStyle:true}));
+map.on('complete',function(){
+    var layer = new AMap.LabelsLayer({
+        // 开启标注避让，默认为开启，v1.4.15 新增属性
+        collision: false,
+        // 开启标注淡入动画，默认为开启，v1.4.15 新增属性
+        animation: true,
+    });
+    for (var i = 0; i < LabelsData.length; i++) {
+        var labelsMarker = new AMap.LabelMarker(LabelsData[i]);
+        layer.add(labelsMarker);
+    }
+    map.add(layer);
+})
+
+document.getElementsByClassName('amap-mcode')[0].innerHTML = '-GS(2021)648号'
+    </script>
+  </body>
+</html>
