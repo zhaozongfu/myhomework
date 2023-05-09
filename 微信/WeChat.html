@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      a {
+        text-decoration: none;
+      }
+      body {
+        background-color: aliceblue;
+        position: relative;
+      }
+      .div {
+        width: 100%;
+        height: auto;
+        background-color: #2aae67;
+        border-radius: 0px 0px 30% 30%;
+      }
+      .box {
+        width: 100%;
+        height: 150px;
+        background-color: #2aae67;
+        border-radius: 0px 0px 30% 30%;
+      }
+      .span {
+        float: right;
+        margin-top: 15px;
+        color: rgb(205, 204, 204);
+      }
+      .span a:hover {
+        color: rgb(147, 145, 145);
+      }
+      .span a {
+        padding-right: 10px;
+        padding-left: 10px;
+        color: rgb(205, 204, 204);
+      }
+      .box1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 592.75px;
+        background-color: #2aae67;
+        animation: a 1.3s both;
+        border-radius: 0px 0px 30% 30%;
+      }
+      @keyframes a {
+        0% {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .span1 {
+        position: relative;
+        top: -12px;
+        color: rgb(230, 228, 228);
+        font-size: 40px;
+      }
+      .box2 {
+        width: 440px;
+        height: 169px;
+        border-top: 1px white solid;
+        text-align: center;
+        padding: 24px 0 0;
+        line-height: 40px;
+        position: relative;
+        font-size: 17px;
+        color: white;
+      }
+      .box2 span,
+      .box2 a {
+        color: white;
+      }
+      .box2 a {
+        float: left;
+      }
+      .box2 span {
+        float: right;
+      }
+      .box2 a:last-child {
+        position: absolute;
+        top: 140px;
+        left: 0px;
+      }
+      .box3 {
+        margin-top: 72px;
+        width: 720px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        margin-right: -24px;
+
+        text-align: center;
+      }
+      .box3 a {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: hsla(0, 0%, 100%, 0.07);
+        margin-right: 24px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      .box3 a:hover {
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .i {
+        width: 60px;
+        height: 50px;
+        transition: opacity 0.5s;
+        margin-bottom: 4px;
+        margin-top: 24px;
+      }
+      .box3 span {
+        color: white;
+      }
+      .box4 {
+        width: 650px;
+        height: 128px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding-top: 56px;
+      }
+      .box4 a {
+        display: flex;
+        width: 205px;
+        height: 56px;
+        background-color: hsla(0, 0%, 100%, 0.07);
+        color: hsla(0, 0%, 100%, 0.9);
+        border-radius: 8px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        letter-spacing: 0.76px;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+      .box4 i {
+        width: 32px;
+        height: 32px;
+        display: inline-block;
+      }
+      #xxx {
+        width: 50px;
+        height: 50px;
+        margin: auto;
+        margin-top: 30px;
+        color: aliceblue;
+      }
+      .box5 {
+        width: 1110px;
+        height: 1204px;
+        animation: a 1s both;
+        padding: 72px 0;
+        margin: 0 80px 0 112px;
+        display: flex;
+        justify-content: center;
+        overflow: hidden;
+        margin-left: 130px;
+      }
+      .box5 ul {
+        display: flex;
+        flex-wrap: wrap;
+        width: 984px;
+        list-style: none;
+      }
+      .box5 ul li {
+        width: 214px;
+        height: 180px;
+        padding-right: 32px;
+        padding-bottom: 32px;
+        border-radius: 8px;
+        cursor: pointer;
+        position: relative;
+      }
+      .box5 ul li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        background-color: #fff;
+        border-radius: 8px;
+        transition: transform 0.3s;
+        line-height: 24px;
+      }
+      .box5 span {
+        color: black;
+      }
+      .box5 a:hover {
+        width: 220px;
+        height: 200px;
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+      }
+      .ietm3 {
+        width: 100%;
+        height: 200px;
+        background-color: #fff;
+        text-align: center;
+       
+      }
+      .ietm3 ul li {
+        float: right;
+        margin-left: 30px;
+        padding-right: 30px;
+        border-right: 1px solid gray;
+        
+        list-style: none;
+        margin-top: 30px;
+      }
+      .ietm3 ul{
+        width: 1000px;
+        height: 40px;
+        margin-left: 74px;
+      }
+      .ietm3 ul li:first-child {
+        border: none;
+      }
+      .ietm3 span {
+        color: rgb(161, 161, 161);
+        display: block;
+      }
+      .ietm3 p {
+        font-size: 23px;
+        color: rgb(161, 161, 161);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div">
+      <div class="box">
+        <span class="span"
+          ><a href="https://www.wechat.com/zh_TW/">WeChat(繁体)</a>|<a
+            href="https://www.wechat.com/en/"
+            >WeChat(EN)</a
+          ></span
+        >
+      </div>
+      <div class="box1">
+        <div class="logo">
+          <img src="./logo.png" alt="" width="80px" height="60px" />
+          <span class="span1">微信</span>
+        </div>
+        <div class="box2">
+          <div>
+            <a
+              href="https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=page/faq/keyboard/0506/index&faq=keyboard_0506"
+              >微信键盘 0.9.1 for Mac 灰度版发布</a
+            >
+            <span>05-06</span>
+          </div>
+          <div>
+            <a
+              href="https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=page/faq/ios/8037/index&faq=ios_8037"
+              >微信 8.0.37 for iOS 正式版发布</a
+            >
+            <span>04-27</span>
+          </div>
+          <div>
+            <a
+              href="https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=page/faq/android/8035/index&faq=android_8035"
+              >微信 8.0.35 for Android 正式版发布</a
+            >
+            <span>04-20</span>
+          </div>
+          <div>
+            <a
+              href="https://weixin.qq.com/cgi-bin/readtemplate?lang=zh_CN&t=weixin_faq_list&head=true"
+              >更新日志></a
+            >
+          </div>
+        </div>
+        <div class="box3">
+          <a href="">
+            <i class="i">
+              <img src="./i1.png" alt="" width="100%" height="100%"
+            /></i>
+            <span>Android</span>
+          </a>
+          <a href="">
+            <i class="i">
+              <img src="./i2.png" alt="" width="100%" height="100%"
+            /></i>
+            <span>iOS</span>
+          </a>
+          <a href="">
+            <i class="i">
+              <img src="./i3.png" alt="" width="100%" height="100%"
+            /></i>
+            <span>Window</span>
+          </a>
+          <a href="">
+            <i class="i">
+              <img src="./i2.png" alt="" width="100%" height="100%"
+            /></i>
+            <span>macOS</span>
+          </a>
+          <a href="">
+            <i class="i">
+              <img src="./i4.png" alt="" width="100%" height="100%"
+            /></i>
+            <span>文件传输助手<br />网页版</span>
+          </a>
+        </div>
+        <div class="box4">
+          <a href="">
+            <i><img src="./i5.png" alt="" width="100%" height="100%" /></i>
+            <span>儿童手表版</span>
+          </a>
+          <a href="">
+            <i><img src="./i6.png" alt="" width="100%" height="100%" /></i>
+            <span>车载版</span>
+          </a>
+          <a href="">
+            <i><img src="./i7.png" alt="" width="100%" height="100%" /></i>
+            <span>微信键盘</span>
+          </a>
+        </div>
+      </div>
+      <div id="xxx">
+        <span>下翻</span>
+      </div>
+    </div>
+    <div class="box5">
+      <ul>
+        <!--  一组 -->
+        <li>
+          <a href="">
+            <i><img src="./图2.png" alt="" width="100%" height="100%" /></i>
+            <span>微信支付</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i><img src="./图3.png" alt="" width="100%" height="100%" /></i>
+            <span>公众号</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i><img src="./图4.png" alt="" width="100%" height="100%" /></i>
+            <span>小程序</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i><img src="./图5.png" alt="" width="100%" height="100%" /></i>
+            <span>视频助手</span>
+          </a>
+        </li>
+        <!--  二组 -->
+        <li>
+          <a href="">
+            <i><img src="./图6.png" alt="" width="100%" height="100%" /></i>
+            <span>小游戏</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i><img src="./图7.png" alt="" width="100%" height="100%" /></i>
+            <span>小商店</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i><img src="./图8.png" alt="" width="100%" height="100%" /></i>
+            <span>表情开放平台</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i><img src="./图1.png" alt="" width="100%" height="100%" /></i>
+            <span>搜一搜开发平台</span>
+          </a>
+        </li>
+        <!--  三组 -->
+        <li>
+          <a href="">
+            <i><img src="./图9.png" alt="" width="100%" height="100%" /></i>
+            <span>红包封面开放平台</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i><img src="./图10.png" alt="" width="100%" height="100%" /></i>
+            <span>对话开放平台</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i><img src="./图11.png" alt="" width="100%" height="100%" /></i>
+            <span>开放社区</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i><img src="./图12.png" alt="" width="100%" height="100%" /></i>
+            <span>服务市场</span>
+          </a>
+        </li>
+        <!--  四组 -->
+        <li>
+          <a href="">
+            <i><img src="./图13.png" alt="" width="100%" height="100%" /></i>
+            <span>企业微信</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i><img src="./图14.png" alt="" width="100%" height="100%" /></i>
+            <span>微信学堂</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <i><img src="./图15.png" alt="" width="100%" height="100%" /></i>
+            <span>官方设计资源</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <span>开放平台</span>
+          </a>
+        </li>
+        <!--  五组 -->
+        <li>
+          <a href="">
+            <span>硬件平台</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <span>微信广告</span>
+          </a>
+        </li>
+        <li>
+          <a href="">
+            <span>官方文档</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="ietm3">
+      <ul>
+        <li>关于腾讯</li>
+        <li>微信安全</li>
+        <li>服务条款</li>
+        <li>使用规范</li>
+        <li>客服中心</li>
+        <li>隐私保护指引</li>
+      </ul>
+      <p style="margin-top: 30px;">备案号:粤B2-20090059</p>
+      <p>Copyright  1998-2023 Tencent All Rights Reserved.</p >
+    </div>
+  </body>
+</html>
